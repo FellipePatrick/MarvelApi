@@ -1,0 +1,101 @@
+
+body{
+    background-image: linear-gradient(rgba(43, 42, 42, 0.7), rgba(43, 42, 42, 0.7)), url(/static/img/fundo.jpg);
+
+}
+h1 {
+    color: white;
+}
+h3 {
+    color: white;
+}
+.logo{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.dropdown {
+    color: white !important;
+    height: 15px !important;
+    margin-top: 10px !important;
+}
+
+
+.botaospan button {
+    border-color: white !important ;
+    outline: 0;
+}
+
+main {
+    width: 100%;
+}
+
+
+.searchmain {
+    margin-top: 150px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.botaospan i {
+    color: white !important ;
+}
+
+.dropdown-item {
+    color: black !important;
+}
+
+
+.card{
+    margin-left: 20px;
+
+    border-radius:8px;
+    cursor:pointer;
+}
+
+
+.card:before{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#e7bebe;
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:after{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#b60101;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:hover::after{
+    transform:scaleY(1);
+}
+
+
+.fonts{
+    font-size:11px;
+}
+
+.heroicontainer{
+    background-color: white;
+    margin-top: 20px;
+}
+
+.emp-profile{
+    height: 800px !important;
+}

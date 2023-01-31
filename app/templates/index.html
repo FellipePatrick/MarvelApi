@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="search mb-5" > 
+        <div class="container-fluid mb-5">
+            <div class="row">
+                <div class="col-md-12 searchmain ">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning my-4 mx-5 center" style="width: 30%;  text-align: center;">
+                        {{ message }}
+                        <i class="mx-2 my-1 fa-solid fa-xmark" style="margin-top: 5px !important;" onclick=delete_flash(this)></i>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                    <div class="div center">
+                    <form class="row g-3" action="{{url_for('index')}}" method="POST">
+                        <div class=" w-50 h-25 d-flex center">
+                                {{form.csrf_token}}
+                                {{form.username(class="form-control h-50", type="text", placeholder="verifique se o heroi é um candidato")}}
+                                <button type="submit" class="h-50 botaoi" ><i  type="submit" class="fa fa-search icone my-2 mx-3" style="color: #e40d0a !important;"></i></button>                        
+                          </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="heroismain">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="div">
+                    <span class="mx-5 fw-bold"><h1 class="mx-4 fw-bold">Hérois</h1></span>
+                </div>
+                    {% for heroi in hero %}
+                        <div class="col-md-4 my-3 mb-3 ">
+                            <div class="card p-3 py-4 ">
+                        
+                                <div class="text-center">
+                                    <img src="{{heroi['thumbnail']['path']}}.{{heroi['thumbnail']['extension']}}" style="border-radius: 10%;" width="100px" height="100px">
+                                </div>
+                                <div class="text-center mt-3">
+                                    <div class="div my-2">
+                                        <a href="/atualizar/{{heroi['id'] }}" style="color: blue !important;">atualizar</a>
+                                    </div>
+                                    <h5 class="mt-2 mb-0">{{heroi["name"]}}</h5>
+                                    <span>{{heroi["id"]}}</span>              
+                                </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+        </div>
+    </section>
+
+{% endblock%}

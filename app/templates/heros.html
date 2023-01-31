@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main >
+    <div class="container">
+        <div class="text my-4">
+            <h3 class="fw-bold my-4" style="color: white;">HEROIS <hr class="my-3"></h3>
+        </div>
+        <div class="row">
+            {% for heroi in hero %}
+            <div class="col-md-4 my-3 mb-3" style="height: 300px;">
+                <div class="card p-3 py-4">
+            
+                    <div class="text-center">
+                        <img src="{{heroi['thumbnail']['path']}}.{{heroi['thumbnail']['extension']}}" style="border-radius: 10%;"  width="100px" height="100px">
+                    </div>
+                    <div class="text-center mt-3">
+                        <div class="div my-2">
+                            <a href="/atualizar/{{heroi['id'] }}" style="color: blue !important;">atualizar</a>
+                        </div>
+                        <h5 class="mt-2 mb-0">{{heroi["name"]}}</h5>
+                        <span>{{heroi["id"]}}</span>              
+                    </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+
+{%endblock%}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main >
+      <div class="container perfilcontainer">
+        <div class="row my-5 mx-3" style="margin-top: 50px; ">
+            <div class="container d-flex my-5">
+                <div class="col-md-3">
+                    <span class="fw-bold"><h3 style="color: black;">Equipe Dashboard</h3></span>
+                </div>
+                <div class="botao mx-5">
+                  <a href="{{url_for('criarequipe')}}" type="button" class="btn btn-primary">Criar Equipe</a>
+                </div>
+            </div>
+        </div>
+        <div class="row  mx-3">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome da Equipe</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {%for i in equipes%}
+                      <tr>
+                        <th scope="row">{{i['id']}}</th>
+                        <td>{{i['nome']}}</td>
+                        <td>{{i['description']}}</td>
+                        <td class="">
+                            <button type="button" class="btn btn-warning" onclick="return confirm('Por motivos de segurança, você não pode fazer isso.')">Atualizar</button>
+                            <button type="button" class="btn btn-danger" onclick="return confirm('Por motivos de segurança, você não pode fazer isso.')">Deletar</button>
+                            
+                        </td>
+                      </tr>
+                      {%endfor%}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="dvi my-5" style="margin-top: 30px;" ><span style="color:white !important;">.</span></div>
+      </div>
+    </main>
+{%endblock%}

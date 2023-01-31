@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <main >
+        <div class="container perfilcontainer">
+            <div class="row my-5 mx-3" style="margin-top: 50px; ">
+                <div class="container d-flex my-5">
+                    <div class="col-md-3">
+                        <span class="fw-bold"><h3 style="color: black;">Candidatos</h3></span>
+                    </div>
+                    <div class="botao mx-5">
+                      <a href="{{url_for('heros')}}" type="button" class="btn btn-primary">Herois</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row  mx-3">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">UserID</th>
+                            <th scope="col">Ação</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {%for i in candidato%}
+                          <tr>
+                            <th scope="row">{{i['id']}}</th>
+                            <td>{{i['name']}}</td>
+                            <td>{{i['status']}}</td>
+                            <td>{{i['userid']}}</td>
+                            <td class="">
+                                <a href="/atualizar/{{i['userid'] }}" type="button" class="btn btn-warning">Atualizar</a>
+                                <a href="/deletec/{{i['id']}}"type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que quer deletar?')">Deletar</a>
+                                
+                            </td>
+                          </tr>
+                          {%endfor%}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+            <div class="dvi my-5" style="margin-top: 30px;" ><span style="color:white !important;">.</span></div>
+          </div>
+    </main>
+{% endblock %}

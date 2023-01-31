@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <main >
+        <section class="text-center marcador_section text-lg-start ">
+            <div class="container py-4">      
+            <div class="row g-0 align-items-center">
+                <div class=" offset-lg-3  col-lg-6 mb-5 mb-lg-0 user">
+                  <div class="card cascading-right">
+                    <div class="dvi " style="margin-top: 10px;" ><span style="color:white !important;">.</span></div>
+                    <span class=" myfa-stack-1x"><a href="{{url_for('dashuser')}}" class="mx-5" style="color: rgb(68, 10, 228) !important;">voltar</a></span>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                      {% for message in messages %}
+                      <div class="alert alert-warning my-4 mx-5" style="width: 80%; text-align: center;">
+                          {{ message }}
+                          <i class="mx-2 my-1 fa-solid fa-xmark" style="margin-top: 5px !important;" onclick=delete_flash(this)></i>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                    <div class="card-body  shadow-5 text-center">
+                    <h5 class="fw-bold mb-5" style="letter-spacing: 3px;">Atualiar Usuário</h5>
+                    <form class="row g-3" action="/dashuser/atualizar/{{user.id}}" method="POST">
+                      {{form.csrf_token}}
+                       <div class="col-md-6">
+                         <label for="inputEmail4" class="form-label">{{user.email}}</label>
+                         {{form.email(class="form-control", value="email")}}
+                             {%if form.errors.email%}
+                                 <div class="alert alert-danger" role="alert">
+                                   É necessario preencher o email do usuário
+                                 </div>
+                         {%endif%}
+                       </div>
+                       <div class="col-6">
+                         <label for="inputAddress2" class="form-label">{{user.telefone}}</label>
+                         {{form.phone(class="form-control", value="telefone" )}}
+                             {%if form.errors.phone%}
+                                 <div class="alert alert-danger" role="alert">
+                                     É necessario preencher 
+                                 </div>
+                         {%endif%}
+                       </div>
+                       <div class="col-12">
+                         <label for="inputAddress" class="form-label">{{user.username}}</label>
+                         {{form.username(class="form-control", value="Usuário" )}}
+                                     {%if form.errors.username%}
+                                     <div class="alert alert-danger" role="alert">
+                                       É necessario preencher o nome de usuário
+                                     </div>
+                         {%endif%}
+                       </div>
+                       <div class="col-md-6">
+                         <label for="inputPassword4" class="form-label">Senha</label>
+                         {{form.password(class="form-control", placeholder="senha" )}}
+                                   {%if form.errors.password%}
+                                     <div class="alert alert-danger" role="alert">
+                                       É necessario preencher a senha
+                                     </div>
+                         {%endif%}
+                       </div>
+                       <div class="col-md-6">
+                         <label for="inputPassword4" class="form-label">Repetir-Senha</label>
+                         {{form.repetepassword(class="form-control", placeholder="repetir-senha" )}}
+                                   {%if form.errors.repetepassword%}
+                                     <div class="alert alert-danger" role="alert">
+                                       É necessario preencher a senha
+                                     </div>
+                           {%endif%}
+                       </div>
+                       <div class="col-md-6">
+                         <label for="inputState" class="form-label">Cargo</label>
+                         {{form.cargo(class="form-control", id="inputState", value="Agente", value="Agente" )}}               
+                                     {%if form.errors.cargo%}
+                                     <div class="alert alert-danger" role="alert">
+                                       É necessario preencher o cargo do usuário
+                                     </div>
+                         {%endif%}
+                       </div>
+                       <div class="col-md-6">
+                         <label for="inputState" class="form-label">{{user.nome}}</label>
+                         {{form.name(class="form-control", id="inputState", value="nome" )}}               
+                                     {%if form.errors.nome%}
+                                     <div class="alert alert-danger" role="alert">
+                                       É necessario preencher o nome do usuário
+                                     </div>
+                         {%endif%}
+                       </div>
+                       <div class="col-12">
+                         <button type="submit" class="btn btn-primary">cadastrar</button>
+                       </div>
+                     </form>
+                    <div class="dvi " style="margin-top: 10px;" ><span style="color:white !important;">.</span></div>
+                    </div>
+                 </div>
+                </div>
+             </div>
+            </div>
+        </section>
+    </main>
+ {%endblock%}

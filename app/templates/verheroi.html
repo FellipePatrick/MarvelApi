@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{%block content%}
+   
+        {%for heroi in hero%}
+        <div class=" fundo" >
+            
+                <div class="row">
+                    <div class="col-md-4 my-5">
+                        <div class="profile-img  ">
+                            <img src="{{heroi['thumbnail']['path']}}.{{heroi['thumbnail']['extension']}}" style="border-radius: 10%;" class="foto" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-5">
+                        <div class="col-md-2 mb-5">
+                            <a href="{{url_for('index')}}"  class="profile-edit-btn" name="btnAddMore" style="color: rgb(16, 0, 245)  !important;">voltar</a>
+                        </div>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                          {% for message in messages %}
+                           <div class="alert alert-warning my-4 mx-5 d-flex" style="width: 80%; text-align: center;">
+                              {{ message }}
+                              <i class="mx-2 my-1 fa-solid fa-xmark" style="margin-top: 5px !important;" onclick=delete_flash(this)></i>
+                            </div>
+                            {% endfor %}     
+                        {% endif %}
+                      {% endwith %}
+                        <div class="profile-head">
+                                    <span>
+                                        <h5>
+                                            {{heroi["name"]}}
+                                        </h5>
+                                    </span>
+                                    <p class="proile-rating">EQUIPE : {%if equipehero ==  '' %}
+                                                                        <span> SEM EQUIPE </span>
+                                                                        {%else%}
+                                                                        <span> {{equipehero}} </span>
+                                                                    {%endif%}
+                                    </p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true" style="color: black  !important;">Sobre</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="ome-tab" href="#comics" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true" style="color: black  !important;">Quadrinhos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" href="#movies" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true" style="color: black  !important;">Filmes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-4 col-md-8">
+                        <div class="" id="">
+                            <div class="" id="" role="" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="fw-bold"> Nome</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{heroi["name"]}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row" >
+                                            <div class="col-md-6">
+                                                <label class="fw-bold"> Descrição</label>
+                                            </div>
+                                            <div class="col-md-5 ">
+                                                {% if heroi["description"] == '' %}
+                                                    <span class="fw-bold" style="color: red !important;">Não tem descrição</span>
+                                                {% else %}
+                                                    <p>{{traducao}} </p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        {%if verificacao == 0 %}
+                                            <form class="row g-3 my-3" action="/atualizar/{{heroi['id']}}" method="POST">
+                                                {{form.csrf_token}}
+                                                <div class="col-md-6  my-5">
+                                                    {{form.status(class="form-control my-3", id="inputState", placeholder="nome", value="Candidato" )}}               
+                                                                {%if form.errors.status%}
+                                                                <div class="alert alert-danger" role="alert">
+                                                                  É necessario preencher este campo
+                                                                </div>
+                                                                {%endif%}
+                                                                <div class="col-12 ">
+                                                                    <button type="submit" class=" my-3 btn btn-primary">cadastrar</button>
+                                                                  </div>
+                                                            </div>
+                                            </form>
+                                          {%elif verificacao == 1 %} 
+                                                {%if var == 0 %}
+                                                    <form class="row g-3 my-3" action="/atualizar/{{heroi['id']}}" method="POST">
+                                                        {{formhero.csrf_token}}
+                                                        <div class="col-md-6  my-5">
+                                                            {{formhero.equipe(class="form-control my-3", id="inputState", placeholder="Digite uma equipe para o candidato" )}}               
+                                                                        {%if formhero.errors.status%}
+                                                                        <div class="alert alert-danger" role="alert">
+                                                                        É necessario preencher este campo
+                                                                        </div>
+                                                                        {%endif%}
+                                                                        <div class="col-12 my-3">
+                                                                            <button type="submit" class="btn btn-primary">cadastrar</button>
+                                                                        </div>
+                                                                    </div>
+                                                        </form>
+                                                {%elif var ==  1 %}                   
+                                            {%endif%}
+                                         {%endif%}
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            {%endfor%}
+            <div class="container">
+                <div class="row">
+                    <span class="fw-bold" id="comics"><h3 style="color: rgb(255, 255, 255);">Comics <hr class="my-3"></h3></span>
+                   {%for h in comics%}
+                   <div class="col-md-4 my-3">
+                        <div class="card" style="width: 18rem;">
+                             <div class="card-body">
+                            <h5 class="card-title">{{h['title']}}</h5>
+                            <button type="button" class="btn btn-primary">Comic</button>
+                            </div>
+                        </div>
+                    </div>
+                   {%endfor%}
+                 </div>
+            </div>
+            <div class="container">
+                <div class="row my-5">
+                    <span class="fw-bold" id="movies"><h3 style="color: rgb(255, 255, 255);">Movies <hr class="my-3"></h3></span>
+                    {%for event in events%}
+                    <div class="col-sm-6 mb-3 mb-sm-0 my-3">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">{{event['title']}}</h5>
+                            <p class="card-text">{{event['description']}}</p>
+                            <button  type="button"  class="btn btn-primary">movie</button>
+                          </div>
+                        </div>
+                      </div>
+                    {%endfor%}
+                  </div>
+            </div>
+
+
+{%endblock%}

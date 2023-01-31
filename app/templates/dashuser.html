@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main >
+      <div class="container perfilcontainer">
+        <div class="row my-5 mx-3" style="margin-top: 50px; ">
+            <div class="container d-flex  my-5">
+                <div class="col-md-3">
+                    <span class="fw-bold"><h3 style="color: black;">Usuários Dashboard</h3></span>
+                </div>
+                <div class="botao mx-5 align-item-end">
+                    <a href="/dashuser/criar" type="button" class="btn btn-primary">Criar Usuário</a>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5 mx-3">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {%for i in usuarios%}
+                      <tr class="">
+                        <th scope="row">{{i['id']}}</th>
+                        <td>{{i['nome']}}</td>
+                        <td>{{i['email']}}</td>
+                        <td>{{i['cargo']}}</td>
+                        <td class="">
+                            <a href="/dashuser/atualizar/{{i['id']}} " type="button" class="btn btn-primary">Editar</a>
+                            <a href="/delete/{{i['id']}}"type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que quer deletar?')">Deletar</a>
+                          </td>
+                      </tr>
+                      {%endfor%}
+                    </tbody>
+                  </table>
+                  <div class="dvi my-5" style="margin-top: 30px;" ><span style="color:white !important;">.</span></div>
+            </div>
+        </div>
+      </div>
+    </main>
+
+{%endblock%}
