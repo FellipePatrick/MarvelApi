@@ -11,7 +11,7 @@ Para efetuar o login no site utilize:
 
 Login: jamsfury
 
-Senha: Shield
+Senha: shield
 
 
 ____________________________ OBRIGADO POR SUA ATENÇÃO ____________________________ 
