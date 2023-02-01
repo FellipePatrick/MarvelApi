@@ -29,4 +29,4 @@ Link do site com hospedado em uma cloud e com certificado sll: https://fellipepa
                                                               
 link sem certificado: http://fellipepatrick.me
 
-A aplicação em modo server apresenta alguns bugs, para melhor experiencia utilize o modo desenvolvedor baixando e executanto o repositorio.
+!!!! OBSERVAÇÃO: A aplicação em modo server apresenta alguns bugs, para melhor experiencia utilize o modo desenvolvedor baixando e executanto o repositorio. !!!!!
