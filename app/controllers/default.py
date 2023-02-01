@@ -13,7 +13,7 @@ def load_user(id):
     return User.query.filter_by(id=id).first()
 
 @app.route('/index', methods=['GET','POST'])
-
+@login_required
 def index():
     form = Search()
     if form.validate_on_submit():
@@ -64,11 +64,12 @@ def recuperarsenha():
     return render_template('recuperarsenha.html', form=form)
     
 @app.route('/heros', methods=['POST', 'GET'])
+@login_required
 def heros():
     return render_template('heros.html', hero=objeto.getheros())
 
 @app.route('/atualizar/<int:heroi_id>', methods=['GET','POST'])
-
+@login_required
 def atualizarheroi(heroi_id):
     for i in objeto.gethero(heroi_id):
         userid = i['id']
@@ -111,6 +112,7 @@ def atualizarheroi(heroi_id):
     formhero=formhero,  verificacao=ponto, var=var, equipehero =equipehero)
 
 @app.route('/candidatos', methods=['POST', 'GET', 'DELETE'])
+@login_required
 def candidatos():
     tcandidatos = candidato.query.all()
     return render_template('candidatos.html', candidato=tcandidatos)
@@ -141,12 +143,13 @@ def criarequipe():
     return render_template('criarequipe.html', form=form)
 
 @app.route('/dashuser')
-
+@login_required
 def dashuser():
     all_data = User.query.all()
     return render_template('dashuser.html', usuarios = all_data)
 
 @app.route('/dashuser/atualizar/<int:id>', methods=['GET','POST', 'DELETE'])
+@login_required
 def attuser(id):
     form = CreateUser()
     user = User.query.filter_by(id=id).first()
@@ -173,6 +176,7 @@ def attuser(id):
     return render_template('atualizaruser.html',user=user, form=form)
 
 @app.route('/deletec/<int:id>', methods=['POST', 'GET', 'DELETE'])
+@login_required
 def deletec(id):
     p = candidato.query.filter_by(id=id).first()
     db.session.delete(p)
@@ -186,6 +190,7 @@ def delete(id):
     return redirect(url_for('dashuser'))
 
 @app.route('/dashuser/criar', methods=['GET','POST'])
+@login_required
 def criaruser():
     variavel = str("nome aleatorio")
     user = User.query.filter_by(username="jamsfury").first()
