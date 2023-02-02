@@ -25,8 +25,8 @@ Login: jamsfury
 
 Senha: shield
 
-Link do site com hospedado em uma cloud e com certificado sll: https://fellipepatrick.me (em verificação)
+Link do site hospedado em uma cloud e com certificado sll: https://fellipepatrick.me (em verificação)
                                                               
 link sem certificado: http://fellipepatrick.me
 
-!!!! OBSERVAÇÃO: A aplicação em modo server apresenta alguns bugs, para melhor experiencia utilize o modo desenvolvedor baixando e executanto o repositorio. !!!!!
+!!!! OBSERVAÇÃO: A aplicação em modo server está apresentando alguns bugs, para melhor experiencia utilize o modo desenvolvedor baixando e executanto o repositorio. !!!!!
